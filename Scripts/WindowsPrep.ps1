@@ -10,7 +10,7 @@ UnPinFromTaskbar "Mail"
 
 #Download applications
 #Download Ninite
-$url = "https://ninite.com/7zip-air-chrome-firefox-silverlight-spybot2-vlc/"
+$url = "https://ninite.com/7zip-air-chrome-firefox-silverlight-spybot2-vlc/ninite.exe"
 $outpath = ".\ninite.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
 
@@ -20,11 +20,11 @@ $outpath = ".\java.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
 
 #Download Reader
-$url = "https://get.adobe.com/reader/download/?installer=Reader_DC_2020.009.20063_English_for_Windows&os=Windows%2010&browser_type=KHTML&browser_dist=Chrome&dualoffer=false&mdualoffer=true&cr=false&stype=7595&d=McAfee_Security_Scan_Plus&d=McAfee_Safe_Connect"
-$outpath = ".\reader.exe"
+$url = "https://admdownload.adobe.com/bin/live/readerdc_en_xa_crd_install.exe"
+$outpath = ".\readerdc_en_xa_crd_install.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
 
 #Exacute the installers
-Start-Process -Filepath "./java.exe" -Wait
-Start-Process -FilePath "./ninite.exe" -Wait
-Start-Process -FilePath "./reader.exe" -Wait
+Start-Process -Filepath ".\java.exe" -Wait
+Start-Process -FilePath ".\ninite.exe" -Wait
+Start-Process -FilePath ".\readerdc_en_xa_crd_install.exe" -Wait
