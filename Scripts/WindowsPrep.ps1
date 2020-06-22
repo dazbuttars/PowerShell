@@ -25,6 +25,6 @@ $outpath = ".\readerdc_en_xa_crd_install.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
 
 #Exacute the installers
-Start-Process -Filepath ".\java.exe" -Wait
-Start-Process -FilePath ".\ninite.exe" -Wait
-Start-Process -FilePath ".\readerdc_en_xa_crd_install.exe" -Wait
+Start-Process -Filepath ".\java.exe" -ArgumentList '/passive' -Wait
+Start-Process -FilePath ".\ninite.exe" -ArgumentList '/passive' -Wait
+Start-Process -FilePath ".\readerdc_en_xa_crd_install.exe" -ArgumentList '/passive' -Wait
