@@ -1,3 +1,4 @@
+
 #Unpin Taskbar Store and Mail
 function UnPinFromTaskbar { param( [string]$appname )
 Try {
@@ -13,18 +14,45 @@ UnPinFromTaskbar "Mail"
 $url = "https://ninite.com/7zip-air-chrome-firefox-silverlight-spybot2-vlc/ninite.exe"
 $outpath = ".\ninite.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
-
-#Download Java
-$url = "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242029_3d5a2bb8f8d4428bbe94aed7ec7ae784"
+$version = [System.Environment]::Is64BitOperatingSystem 
+if($version -eq $true){
+#Download Java Windows 64bit
+$url = "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242060_3d5a2bb8f8d4428bbe94aed7ec7ae784"
 $outpath = ".\java.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
+}
+elseif ($version -eq $false) {
+    
+#Download Java Windows 32bit
+$url = "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242058_3d5a2bb8f8d4428bbe94aed7ec7ae784"
+$outpath = ".\java.exe"
+Invoke-WebRequest -Uri $url -OutFile $outpath
+}
+
+#Install
+Start-Process -Filepath ".\java.exe" -Wait
+Start-Process -FilePath ".\ninite.exe" -Wait
+
+#Do you want to install Reader?
+do{
+$i = 0
+$UsersAnswer = Read-Host -Prompt 'Do you want to install Adobe Reader? (Yes/No)'
+if ($UsersAnswer -eq 'Yes'){
 
 #Download Reader
 $url = "https://admdownload.adobe.com/bin/live/readerdc_en_xa_crd_install.exe"
 $outpath = ".\readerdc_en_xa_crd_install.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
 
-#Exacute the installers
-Start-Process -Filepath ".\java.exe" -ArgumentList '/passive' -Wait
-Start-Process -FilePath ".\ninite.exe" -ArgumentList '/passive' -Wait
+#Install
 Start-Process -FilePath ".\readerdc_en_xa_crd_install.exe" -ArgumentList '/passive' -Wait
+$i = 1
+}
+elseif ($UsersAnswer -eq 'No'){
+    Write-Host 'O.K.'
+    $i = 1
+ }
+ else{
+    Write-Host 'Type Yes or No.'
+ }
+ } while ($i -eq 0)
