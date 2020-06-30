@@ -23,7 +23,7 @@ do {
 $i = 0
 $UsersAnswer = Read-Host -Prompt 'A Restart Is Required, would you like to restart now? (Yes/No)'
 if ($UsersAnswer -eq 'Yes'){
-   Restart-Computer
+   Restart-Computer -Force
    $i = 1
 }
 elseif ($UsersAnswer -eq 'No'){
