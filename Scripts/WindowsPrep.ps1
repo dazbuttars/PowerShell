@@ -83,3 +83,36 @@ do{
        Write-Host 'Type Yes or No.'
     }
     } while ($l -eq 0)
+
+    #Does Keystone need to be installed?
+do{
+   $r = 0
+   $UsersAnswer = Read-Host -Prompt 'Does this PC need Keystone? (Yes/No)'
+   if ($UsersAnswer -eq 'Yes'){
+   
+   #Download Keystone Font Fixer
+   $url = "http://www.dis-corp.com/updates/keystone/font_fix.exe"
+   $outpath = ".\font_fix.exe"
+   Invoke-WebRequest -Uri $url -OutFile $outpath
+   
+   #Install
+   Start-Process -FilePath ".\font_fix.exe"
+
+      #Download Keystone Installer
+   $url = "http://www.dis-corp.com/updates/compdvd/comp1803p.exe"
+   $outpath = ".\comp1803p.exe"
+   Invoke-WebRequest -Uri $url -OutFile $outpath
+   
+   #Install
+   Start-Process -FilePath ".\comp1803p.exe" -Wait
+
+   $r = 1
+   }
+   elseif ($UsersAnswer -eq 'No'){
+       Write-Host 'O.K.'
+       $r = 1
+    }
+    else{
+       Write-Host 'Type Yes or No.'
+    }
+    } while ($r -eq 0)
