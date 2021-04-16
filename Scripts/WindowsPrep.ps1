@@ -1,4 +1,5 @@
-
+#cd to Downloads
+Set-Location ~\Downloads
 #Unpin Taskbar Store and Mail
 function UnPinFromTaskbar { param( [string]$appname )
 Try {
@@ -100,8 +101,7 @@ do{
 
       #Download Keystone Installer
    $url = "http://www.dis-corp.com/updates/compdvd/comp1803p.exe"
-   $outpath = ".\comp1803p.exe"
-   Invoke-WebRequest -Uri $url -OutFile $outpath
+   Start-Process iexplore.exe $url -wait
    
    #Install
    Start-Process -FilePath ".\comp1803p.exe" -Wait
