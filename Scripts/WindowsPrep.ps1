@@ -1,3 +1,8 @@
+#Set Hostname
+$UsersAnswer = Read-Host -Prompt 'Enter a new Hostname else leave blank'
+if($UsersAnswer -ne ''){
+Rename-Computer -ComputerName $UsersAnswer
+}
 #cd to Downloads
 Set-Location ~\Downloads
 #Unpin Taskbar Store and Mail
@@ -116,3 +121,4 @@ do{
        Write-Host 'Type Yes or No.'
     }
     } while ($r -eq 0)
+    Start-Process chrome.exe https://itsp.screenconnect.com
