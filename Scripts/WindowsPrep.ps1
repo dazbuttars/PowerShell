@@ -1,8 +1,8 @@
 #Set Hostname
-$UsersAnswer = Read-Host -Prompt 'Enter a new Hostname else leave blank'
-if($UsersAnswer -ne ''){
-Rename-Computer -ComputerName $UsersAnswer
-}
+Write-Host 'Enter a new Hostname or leave blank to use the Default [ENTER]' -BackgroundColor Black -ForegroundColor Yellow
+Try {
+Rename-Computer
+} Catch {Write-Host "The Hostname is $env:COMPUTERNAME" -BackgroundColor Black -ForegroundColor Yellow}
 #cd to Downloads
 Set-Location ~\Downloads
 #Unpin Taskbar Store and Mail
@@ -109,8 +109,9 @@ do{
    Start-Process iexplore.exe $url -wait
    
    #Install
+   Try{
    Start-Process -FilePath ".\comp1803p.exe" -Wait
-
+   } Catch {$a="b"}
    $r = 1
    }
    elseif ($UsersAnswer -eq 'No'){
